@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<script language="JavaScript" type="text/JavaScript">
+			<!--
+			var text;
+			var word;
+			var i; //letter count
+			var j; //which word in array is to be spelled
+			var start; //variable to hold cycles of the blink
+			var scount; //variable to hold cycles of the mispell
+			
+			function init() {
+				text = "Para Mi Primer Programa:<br>Eres Genial!";
+				word = text.split('.');
+				i = -1;
+				j = 0;
+				start = 0;
+				scount = 0;
+				
+				if (document.all) {
+					callIt();
+				}
+			}
+			
+			function callIt() {
+				with (document.all) {
+					if (i == -1) {
+						bLinkFor(4, 150);
+					} else if (j <= word.length - 1) {
+						spellIt(anima.innerText + " " + word[j]);
+					} else {
+						bLinkFor(100, 230);
+					}
+				}
+			}
+			
+			function bLinkFor(count, timing) {
+				with (document.all.anima) {
+					if (start < count) {
+						if (checkIt()) {
+							start++;
+						}
+						mistake = "bLinkFor(" + count + ", " + timing + ");";
+						setTimeout("eval(mistake)", timing);
+					} else {
+						start = 0;
+						i++;
+						callIt();
+					}
+				}
+			}
+			
+			function checkIt() {
+				with (document.all.anima) {
+					if (innerText.charAt(innerText.length-1) == "_") {
+						innerText = innerText.substring(0, innerText.length - 1);
+						return true;
+					} else {
+						innerText = innerText + "_";
+						return false;
+					}
+				}
+			}
+			
+			function spellIt(string) {
+				with (document.all.anima) {
+					if (i <= string.length) {
+						if (string.charAt(i) == '/') {
+							numerrs = string.charAt(i + 1);
+							newlets = string.substring(i + 2, i + numerrs);
+							mispell(numerrs, newlets);
+						} else if (i <= string.length - 1) {
+							i++;
+							//string = string.replace("<br>", "\n");
+							string = replaceAll(string, "<br>", "\n");
+							
+							innerText = string.substring(0, i) + "_";
+							//string = string.replace("\n", "<br>");
+							string = replaceAll(string, "\n", "<br>");
+							
+							mistake = "spellIt('" + string + "')";
+							setTimeout("eval(mistake)", 150);
+						} else {
+							//string = string.replace("<br>", "\n");
+							string = replaceAll(string, "<br>", "\n");
+							
+							innerText = string.substring(0, i);
+							j++;
+							callIt();
+						}
+					}
+				}
+			}
+			
+			function replaceAll(string, a, b) {
+				var _new = string;
+				var _old = "";
+				while (_new != _old) {
+					_old = _new;
+					_new = _old.replace(a, b);
+				}
+				return _new;
+			}
+			
+			function mispell(offset, correction) {
+				with(document.all.anima) {
+					if(scount < offset) {
+						if(!checkIt()) {
+							innerText = innerText.substring(0, innerText.length-2) + "_";
+							scount++;
+						}
+						mistake = 'mispell(' + offset + ', "' + correction + '")';
+						setTimeout("eval(mistake)", 150);
+					} else {
+						if(correction == '' && scount == offset ) {
+							i -= offset;
+							scount++;
+						}
+						if(offset > 0) {
+							if(checkIt()) {
+								innerText += correction.charAt(correction.length - offset) + "_";
+								offset--;
+							}
+							mistake = 'mispell(' + offset + ',"' + correction + '")';
+							setTimeout("eval(mistake)", 150);
+						} else {
+							scount = 0;
+							j++;
+							innerText = innerText.substring(0, innerText.length - 1);
+							callIt();
+						}
+					}
+				}
+			}
+			-->
+		</script>
+	</head>
+	<body onLoad="init();">
+		<font face="Courier New" color="#7F8EA5">
+			<b>
+				<p id='anima' style="position:center; font-size:36;">
+				</p>
+			</b>
+		</font>
+		<br>
+		<br>
+	</body>
+</html>
